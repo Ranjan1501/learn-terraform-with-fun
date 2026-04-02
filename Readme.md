@@ -1,1 +1,1 @@
-*** Learn Terraform with fun
+Learn Terraform with fun

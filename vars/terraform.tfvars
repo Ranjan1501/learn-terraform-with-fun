@@ -7,10 +7,10 @@ Type = "gp2"
 
 
 additional_tags = {
-	valueFrom = "terraform.tfvars" 
+	valueFrom = "terraform.tfvars"
 }
 
 
 
 // how to pass variables to terraform apply command
-// terraform apply -var-file="vars/prod.tfvars"
+// terraform apply 
