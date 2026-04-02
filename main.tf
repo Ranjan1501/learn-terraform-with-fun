@@ -25,6 +25,8 @@ locals {
   tags = {
     "asdk:development" = "development"
   }
+  project_owner = "ranjan"
+  cost_center   = "12345"
 }
 
 
