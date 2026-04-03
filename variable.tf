@@ -22,6 +22,7 @@ variable "ec2_instance_type" {
 }
 
 variable "ec2_instance_config" {
+  sensitive = true
   type = object({
     instance_type = string
     ami           = string

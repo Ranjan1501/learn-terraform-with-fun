@@ -33,7 +33,10 @@ locals {
 
 resource "aws_s3_bucket" "my_bucket_in_us_east_1" {
   bucket = "my-unique-bucket-name-12345"
-  tags   = local.tags
+  tags = merge(local.tags, {
+    "asdk:project_owner" = local.project_owner,
+    "asdk:cost_center"   = local.cost_center
+  })
 }
 
 resource "aws_s3_bucket" "my_bucket_in_us_west_1" {
