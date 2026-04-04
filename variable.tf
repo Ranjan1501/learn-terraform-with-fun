@@ -58,3 +58,22 @@ variable "numbers_map" {
   type = map(number)
   description = "map of numbers"
 }
+
+ # how to check if list contains a value : contains(list, value) this will return true if the list contains the value otherwise it will return false and add validation on the same.
+
+ # if need to check all instance within this is t2.micro or not in this we can expect treu to all instance_type
+
+variable "ec2_instance_config_list" {
+  type = list(object({
+    instance_type = string
+    ami           = string
+    size          = number
+  }))
+  validation {
+    condition = alltrue( [
+      for config in var.ec2_instance_config_list : contains(
+        ["t2.micro"], config.instance_type )
+       ])
+    error_message = "only t2.micro instance type is allowed in the list"
+  }
+}
