@@ -39,3 +39,22 @@ variable "additional_tags" {
   type    = map(string)
   default = {}
 }
+
+variable "number_list" {
+  type = list(number)
+  description = "list of numbers"
+}
+
+variable "object_list" {
+  type = list(object({
+    first_name = string
+    last_name = string
+    age  = number
+  }))
+  description = "list of objects with name and age"
+}
+
+variable "numbers_map" {
+  type = map(number)
+  description = "map of numbers"
+}
