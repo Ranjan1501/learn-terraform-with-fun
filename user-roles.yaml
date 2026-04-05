@@ -1,0 +1,8 @@
+users: 
+- username : john
+  roles: [readonly, maintiner]
+- username : jane
+  roles: [admin]
+- username : ranjan
+  roles: [developer, admin]
+  

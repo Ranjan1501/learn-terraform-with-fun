@@ -41,27 +41,27 @@ variable "additional_tags" {
 }
 
 variable "number_list" {
-  type = list(number)
+  type        = list(number)
   description = "list of numbers"
 }
 
 variable "object_list" {
   type = list(object({
     first_name = string
-    last_name = string
-    age  = number
+    last_name  = string
+    age        = number
   }))
   description = "list of objects with name and age"
 }
 
 variable "numbers_map" {
-  type = map(number)
+  type        = map(number)
   description = "map of numbers"
 }
 
- # how to check if list contains a value : contains(list, value) this will return true if the list contains the value otherwise it will return false and add validation on the same.
+# how to check if list contains a value : contains(list, value) this will return true if the list contains the value otherwise it will return false and add validation on the same.
 
- # if need to check all instance within this is t2.micro or not in this we can expect treu to all instance_type
+# if need to check all instance within this is t2.micro or not in this we can expect treu to all instance_type
 
 variable "ec2_instance_config_list" {
   type = list(object({
@@ -70,10 +70,10 @@ variable "ec2_instance_config_list" {
     size          = number
   }))
   validation {
-    condition = alltrue( [
+    condition = alltrue([
       for config in var.ec2_instance_config_list : contains(
-        ["t2.micro"], config.instance_type )
-       ])
+      ["t2.micro"], config.instance_type)
+    ])
     error_message = "only t2.micro instance type is allowed in the list"
   }
 }

@@ -3,7 +3,7 @@
 
 locals {
   namse = "lauro miller"
-  age = 15
+  age   = 15
 }
 
 output "name_upper" {
