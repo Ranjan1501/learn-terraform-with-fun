@@ -2,6 +2,9 @@ locals {
   public_subnets = {
     for key , config in var.subnet_config : key => config if config.public
   }
+   private_subnets = {
+    for key , config in var.subnet_config : key => config if !config.public
+  }
 }
 
 data "aws_availability_zones" "available" {
@@ -9,7 +12,7 @@ data "aws_availability_zones" "available" {
 }
 
 
-resource "aws_subnet" "public " {
+resource "aws_subnet" "public_subnet" {
     for_each = local.public_subnets
     vpc_id = aws_vpc.main.id
     cidr_block = each.value.cidr_block
@@ -19,6 +22,17 @@ resource "aws_subnet" "public " {
       
     }
 }
+resource "aws_subnet" "private_subnet" {
+    for_each = local.private_subnets
+    vpc_id = aws_vpc.main.id
+    cidr_block = each.value.cidr_block
+    availability_zone = each.value.availability_zone
+    map_public_ip_on_launch = true
+    lifecycle {
+      
+    }
+}
+
 resource "aws_vpc" "main" {
   cidr_block = "0.0.0/16"
 }
